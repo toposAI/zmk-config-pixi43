@@ -1,7 +1,7 @@
+#include <dt-bindings/zmk/input_transform.h> // ← 1. 上下反転用の定義を追加
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
-#include <dt-bindings/zmk/input_transform.h> // ← 1. 上下反転用の定義を追加
 
 &mt {
     flavor = "balanced";
@@ -10,22 +10,22 @@
 
 &trackball {
     //automouse-layer = <5>;
-
     // scroll-layers = <1>; // ← 2. カスタム処理で代用するため標準設定はオフに
 };
 
 // ← 3. エンコーダーの感度をマイルドにする設定（1回転あたり10トリガーに制限）
-&encoder {
-    triggers-per-rotation = <10>;
-};
+
+&encoder { triggers-per-rotation = <10>; };
 
 / {
     // ↓ 4. レイヤー1（Ctrlレイヤー）にいる時だけ、上下を逆転させてスクロールする命令を設置
+
     trackball_scroll_invert_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
+
         scroller {
-            layers = <1>; 
+            layers = <1>;
             input-processors = <
                 &zip_xy_to_scroll_mapper
                 &zip_scroll_transform INPUT_TRANSFORM_Y_INVERT
@@ -87,22 +87,23 @@
 
         default_layer {
             bindings = <
-&kp Q             &kp W         &kp E         &kp R                        &kp T                                                                                      &kp Y         &kp U  &kp I                    &kp O    &kp P
-&lt 1 A           &kp S         &kp D         &lt 4 F                      &kp G                &kp LS(LG(S))               &kp MINUS      &kp H                &kp J  &kp K                    &kp L    &mt RIGHT_SHIFT ENTER
-&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V                        &kp B                &kp COLON                   &kp SEMICOLON  &kp N                &kp M  &mt RIGHT_COMMAND COMMA  &kp DOT  &lt 3 SLASH
-&lt 3 A           &kp LEFT_WIN  &kp LEFT_ALT  &lt_to_layer_0 3 INT_HENKAN  &lt 2 LEFT_COMMAND  &lt_to_layer_0 5 SPACE      &kp SPACE      &lt 4 RIGHT_COMMAND                                                           &kp DEL
+&kp Q             &kp W               &kp E         &kp R                        &kp T                                                          &kp Y                &kp U  &kp I                    &kp O    &kp P
+&lt 1 A           &kp S               &kp D         &lt 4 F                      &kp G               &kp LS(LG(S))               &kp MINUS      &kp H                &kp J  &kp K                    &kp L    &mt RIGHT_SHIFT ENTER
+&mt LEFT_SHIFT Z  &mt LEFT_COMMAND X  &kp C         &kp V                        &kp B               &kp COLON                   &kp SEMICOLON  &kp N                &kp M  &mt RIGHT_COMMAND COMMA  &kp DOT  &lt 3 SLASH
+&lt 3 A           &kp LEFT_WIN        &kp LEFT_ALT  &lt_to_layer_0 2 INT_HENKAN  &lt 1 LEFT_COMMAND  &lt_to_layer_0 5 SPACE      &kp SPACE      &lt 4 RIGHT_COMMAND                                           &kp DEL
             >;
 
             // Macで確実に動くスムーズズーム（Command + = / -）に最適化
-            sensor-bindings = <&inc_dec_kp LG(EQUAL) LG(MINUS)>;
+
+            sensor-bindings = <&inc_dec_kp LG(PLUS) RG(MINUS)>;
         };
 
         Ctrl {
             bindings = <
-&trans    &trans  &kp END  &trans           &trans                                                                        &kp LC(Y)          &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp UP_ARROW
-&kp HOME  &trans  &kp DEL  &kp RIGHT_ARROW  &trans            &trans      &trans          &kp BACKSPACE      &trans  &kp LC(K)              &trans                 &kp ENTER
-&trans    &trans  &trans   &trans           &trans            &trans      &kp LEFT_ARROW  &kp DOWN_ARROW     &trans  &trans                 &trans                 &trans
-&trans    &trans  &trans   &trans           &kp LEFT_COMMAND  &trans      &trans          &kp RIGHT_COMMAND                                                        &trans
+&kp TAB   &trans            &kp END  &trans           &trans                                        &kp LC(Y)          &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp UP_ARROW
+&kp HOME  &trans            &kp DEL  &kp RIGHT_ARROW  &trans            &trans      &trans          &kp BACKSPACE      &trans  &kp LC(K)             &trans                 &kp ENTER
+&trans    &kp LEFT_COMMAND  &trans   &trans           &trans            &trans      &kp LEFT_ARROW  &kp DOWN_ARROW     &trans  &trans                &kp RIGHT_COMMAND      &trans
+&trans    &trans            &trans   &trans           &kp LEFT_COMMAND  &trans      &trans          &kp RIGHT_COMMAND                                                       &trans
             >;
         };
 
@@ -117,19 +118,19 @@
 
         Symbols {
             bindings = <
-&kp EXCLAMATION  &kp AT_SIGN  &kp HASH  &trans  &kp PERCENT                                           &kp CARET            &kp AMPERSAND        &kp ASTERISK         &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS
-&kp TILDE        &trans       &trans    &trans  &trans       &trans      &kp F13  &kp LC(LEFT_ARROW)  &kp LC(LEFT_ARROW)  &kp LC(RIGHT_ARROW)  &kp LC(RIGHT_ARROW)  &kp MINUS
-&trans           &trans       &trans    &trans  &trans       &trans      &trans   &trans              &kp LC(TAB)          &kp LG(W)            &kp QUESTION          &kp F11
-&trans           &trans       &trans    &trans  &trans       &trans      &trans   &trans                                                                              &kp F12
+&kp EXCLAMATION  &kp AT_SIGN  &kp HASH  &trans  &kp PERCENT                       &kp CARET           &kp AMPERSAND       &kp ASTERISK         &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS
+&kp TILDE        &trans       &trans    &trans  &trans       &trans      &kp F13  &kp LC(LEFT_ARROW)  &kp LC(LEFT_ARROW)  &kp LC(RIGHT_ARROW)  &kp LC(RIGHT_ARROW)   &kp MINUS
+&trans           &trans       &trans    &trans  &trans       &trans      &trans   &trans              &kp LC(TAB)         &kp LG(W)            &kp QUESTION          &kp F11
+&trans           &trans       &trans    &trans  &trans       &trans      &trans   &trans                                                                             &kp F12
             >;
         };
 
         TabWindow {
             bindings = <
-&kp LG(LC(F))  &kp LC(LS(TAB))         &kp UP_ARROW    &kp LC(TAB)              &trans                       &trans  &kp LC(LEFT_ARROW)  &kp LC(UP_ARROW)  &kp LC(RIGHT_ARROW)  &trans
+&kp LG(LC(F))  &kp LC(LS(TAB))         &kp UP_ARROW     &kp LC(TAB)              &trans                       &trans  &kp LC(LEFT_ARROW)  &kp LC(UP_ARROW)  &kp LC(RIGHT_ARROW)  &trans
 &kp LG(TAB)    &kp LEFT_ARROW          &kp RIGHT_ARROW  &kp RIGHT_ARROW          &kp END  &trans      &trans  &trans  &kp LC(LS(TAB))     &kp LC(NUMBER_1)  &kp LC(TAB)          &trans
-&kp LG(H)      &kp LG(LS(LEFT_ARROW))  &trans          &kp LG(LS(RIGHT_ARROW))  &trans   &trans      &trans  &trans  &trans              &kp LG(W)         &trans               &trans
-&trans         &trans                  &trans          &trans                   &trans   &trans      &trans  &trans                                                           &trans
+&kp LG(H)      &kp LG(LS(LEFT_ARROW))  &trans           &kp LG(LS(RIGHT_ARROW))  &trans   &trans      &trans  &trans  &trans              &kp LG(W)         &trans               &trans
+&trans         &trans                  &trans           &trans                   &trans   &trans      &trans  &trans                                                             &trans
             >;
 
             sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
