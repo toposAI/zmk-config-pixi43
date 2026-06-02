@@ -9,6 +9,7 @@
 
 &trackball {
     //automouse-layer = <5>;
+
     scroll-layers = <1>;
 
     // arrows {
@@ -85,7 +86,7 @@
 &lt 3 A           &kp LEFT_WIN  &kp LEFT_ALT  &lt_to_layer_0 3 INT_HENKAN  &lt 2 LEFT_COMMAND  &lt_to_layer_0 5 SPACE      &kp SPACE      &lt 4 RIGHT_COMMAND                                           &kp DEL
             >;
 
-            sensor-bindings = <&inc_dec_kp C_AC_ZOOM_IN C_AC_ZOOM_OUT>;
+            sensor-bindings = <&inc_dec_kp LG(PLUS) RG(MINUS)>;
         };
 
         Ctrl {
