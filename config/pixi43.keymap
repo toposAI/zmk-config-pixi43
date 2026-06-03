@@ -89,7 +89,7 @@
 
         Ctrl {
             bindings = <
-&kp TAB   &trans  &kp END  &trans           &trans                                              &kp LC(Y)          &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp UP_ARROW
+&kp TAB   &trans  &kp END  &kp LG(R)        &trans                                              &kp LC(Y)          &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp UP_ARROW
 &kp HOME  &trans  &kp DEL  &kp RIGHT_ARROW  &trans            &trans             &trans         &kp BACKSPACE      &trans  &kp LC(K)             &trans                 &kp ENTER
 &trans    &trans  &trans   &trans           &kp LEFT_ARROW    &trans             &trans         &kp DOWN_ARROW     &trans  &trans                &trans                 &trans
 &trans    &trans  &trans   &trans           &kp LEFT_COMMAND  &kp LC(SPACE)      &kp LC(SPACE)  &kp RIGHT_COMMAND                                                       &trans
