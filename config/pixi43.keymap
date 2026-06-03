@@ -50,17 +50,29 @@
             label = "TO_LAYER_0";
         };
 
+        // 【修正版】確実にCommandを認識させ、暴走を防ぐズームインマクロ
         zoom_in_macro: zoom_in_macro {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp LEFT_COMMAND>, <&msc SCRL_UP>, <&macro_release &kp LEFT_COMMAND>;
+            wait-ms = <15>; // MacがCommandを認識するまでのタメ
+            tap-ms = <15>;
+            bindings = 
+                <&macro_press &kp LEFT_COMMAND>,
+                <&macro_tap &msc SCRL_UP>,
+                <&macro_release &kp LEFT_COMMAND>;
             label = "ZOOM_IN_MACRO";
         };
 
+        // 【修正版】確実にCommandを認識させ、暴走を防ぐズームアウトマクロ
         zoom_out_macro: zoom_out_macro {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp LEFT_COMMAND>, <&msc SCRL_DOWN>, <&macro_release &kp LEFT_COMMAND>;
+            wait-ms = <15>;
+            tap-ms = <15>;
+            bindings = 
+                <&macro_press &kp LEFT_COMMAND>,
+                <&macro_tap &msc SCRL_DOWN>,
+                <&macro_release &kp LEFT_COMMAND>;
             label = "ZOOM_OUT_MACRO";
         };
     };
