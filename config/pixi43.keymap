@@ -9,7 +9,8 @@
 
 &trackball {
     //automouse-layer = <5>;
-    scroll-layers = <1>; 
+
+    scroll-layers = <1>;
 };
 
 / {
@@ -68,14 +69,23 @@
         default_layer {
             bindings = <
 &kp Q             &kp W         &kp E         &kp R                        &kp T                                                          &kp Y                &kp U  &kp I                    &kp O                     &kp P
-&lt 1 A           &lt 4 S       &kp D         &kp F                        &kp G               &kp LS(LG(S))               &kp MINUS      &kp H                &kp J  &kp K                    &kp L                     &mt RIGHT_SHIFT ENTER
-&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V                        &kp B               &kp COLON                   &kp SEMICOLON  &kp N                &kp M  &mt RIGHT_COMMAND COMMA  &mt RIGHT_COMMAND PERIOD  &lt 3 SLASH
-&lt 3 A           &kp LEFT_WIN  &kp LEFT_ALT  &lt_to_layer_0 3 INT_HENKAN  &lt 1 LEFT_COMMAND  &lt_to_layer_0 5 SPACE      &kp SPACE      &lt 4 RIGHT_COMMAND                                                            &kp DEL
+&lt 2 A           &lt 5 S       &kp D         &kp F                        &kp G               &kp LS(LG(S))               &kp MINUS      &kp H                &kp J  &kp K                    &kp L                     &mt RIGHT_SHIFT ENTER
+&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V                        &kp B               &kp COLON                   &kp SEMICOLON  &kp N                &kp M  &mt RIGHT_COMMAND COMMA  &mt RIGHT_COMMAND PERIOD  &lt 4 SLASH
+&lt 4 A           &kp LEFT_WIN  &kp LEFT_ALT  &lt_to_layer_0 4 INT_HENKAN  &lt 2 LEFT_COMMAND  &lt_to_layer_0 1 SPACE      &kp SPACE      &lt 5 RIGHT_COMMAND                                                            &kp DEL
             >;
 
             // Mac用のスムーズズーム（これはキーマップ層に書いてあるのでエラーになりません）
 
             sensor-bindings = <&inc_dec_kp LG(EQUAL) LG(MINUS)>;
+        };
+
+        MOUSE {
+            bindings = <
+&kp LG(LC(F))  &trans  &trans  &trans  &trans                      &trans  &trans    &trans    &trans    &trans
+&kp LG(TAB)    &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &mkp MB3  &mkp MB2  &trans
+&kp LG(H)      &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans    &trans    &trans
+&trans         &trans  &trans  &trans  &trans  &trans      &trans  &trans                                &trans
+            >;
         };
 
         Ctrl {
@@ -114,15 +124,6 @@
             >;
 
             sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
-        };
-
-        MOUSE {
-            bindings = <
-&kp LG(LC(F))  &trans  &trans  &trans  &trans                      &trans  &trans    &trans    &trans    &trans
-&kp LG(TAB)    &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &mkp MB3  &mkp MB2  &trans
-&kp LG(H)      &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans    &trans    &trans
-&trans         &trans  &trans  &trans  &trans  &trans      &trans  &trans                                &trans
-            >;
         };
     };
 };
