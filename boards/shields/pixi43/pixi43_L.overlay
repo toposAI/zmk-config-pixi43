@@ -15,5 +15,5 @@
     status = "okay";
     
     // エンコーダーの感度を下げる（間引く）ための正しい設定
-    resolution = <4>; 
+    resolution = <2>; 
 };
