@@ -13,4 +13,5 @@
 
 &left_encoder {
     status = "okay";
+    triggers-per-rotation = <10>; // ← ダイヤルを回したときの信号を程よく間引く（感度低下）
 };
