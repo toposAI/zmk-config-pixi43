@@ -1,5 +1,4 @@
 #include "pixi43.dtsi"
-#include <dt-bindings/zmk/input_transform.h> // ← 1. 上下反転用の定義を追加
 
 &default_transform {
     col-offset = <6>;
@@ -20,19 +19,6 @@
         status = "okay";
         compatible = "zmk,input-listener";
         device = <&trackball>;
-    };
-
-    // ↓ 2. Aキー長押し（レイヤー1：Ctrl）のときだけ、上下を逆転させてスクロールする命令を設置
-    trackball_scroll_invert_listener {
-        compatible = "zmk,input-listener";
-        device = <&trackball>;
-        scroller {
-            layers = <1>; 
-            input-processors = <
-                &zip_xy_to_scroll_mapper
-                &zip_scroll_transform INPUT_TRANSFORM_Y_INVERT
-            >;
-        };
     };
 };
 
